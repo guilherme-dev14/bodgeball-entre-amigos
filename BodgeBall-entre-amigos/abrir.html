@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>BodgeBall — jogar entre amigos</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: #151a23;
+        color: #f4f0df;
+        font:
+          16px system-ui,
+          sans-serif;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+      }
+      main {
+        max-width: 620px;
+        width: 100%;
+      }
+      .tag {
+        font-size: 11px;
+        letter-spacing: 2px;
+        color: #eda777;
+      }
+      h1 {
+        font-size: 46px;
+        margin: 15px 0;
+      }
+      p {
+        color: #b8c2d2;
+        line-height: 1.65;
+      }
+      label {
+        display: block;
+        font-size: 12px;
+        margin: 18px 0 8px;
+      }
+      input,
+      button {
+        font: inherit;
+        width: 100%;
+        border-radius: 7px;
+        padding: 14px;
+        border: 1px solid #3f4d65;
+      }
+      input {
+        background: #1e293a;
+        color: #fff;
+      }
+      button {
+        background: #f48756;
+        color: #172131;
+        font-weight: 750;
+        cursor: pointer;
+        margin-top: 12px;
+      }
+      button:hover {
+        filter: brightness(1.12);
+      }
+      button:focus-visible,
+      input:focus-visible {
+        outline: 3px solid #6dc5dd;
+        outline-offset: 2px;
+      }
+      .join {
+        display: grid;
+        grid-template-columns: 1fr 110px;
+        gap: 9px;
+        margin-top: 10px;
+      }
+      .join button {
+        margin: 0;
+        background: #86c8e0;
+      }
+      .card {
+        padding: 24px;
+        border: 1px solid #394458;
+        border-radius: 12px;
+        background: #1b2331;
+      }
+      .small {
+        font-size: 12px;
+      }
+      details {
+        margin-top: 24px;
+        border-top: 1px solid #394458;
+        padding-top: 15px;
+      }
+      summary {
+        cursor: pointer;
+      }
+      li {
+        margin: 12px 0;
+        color: #c0cad9;
+        line-height: 1.5;
+      }
+      #status {
+        color: #ffb689;
+        min-height: 20px;
+      }
+      a {
+        color: #8ed5ef;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <span class="tag">CÓPIA LOCAL · PARTIDAS PELA INTERNET</span>
+      <h1>BodgeBall<br />entre amigos.</h1>
+      <p>
+        Os arquivos abrem no seu computador. A sala conecta vocês pela internet,
+        mesmo em casas diferentes.
+      </p>
+      <section class="card">
+        <label for="name">SEU APELIDO</label
+        ><input
+          id="name"
+          maxlength="24"
+          placeholder="Como seus amigos te chamam"
+          autocomplete="nickname"
+        /><button id="create">Criar sala e ser o anfitrião →</button
+        ><label for="code">JÁ RECEBEU UM CÓDIGO?</label>
+        <div class="join">
+          <input
+            id="code"
+            maxlength="24"
+            placeholder="amigos-a1b2c3d4e5f6"
+            autocapitalize="off"
+            spellcheck="false"
+          /><button id="join">Entrar</button>
+        </div>
+        <p id="status" role="status"></p>
+        <p class="small">
+          Cada amigo deve abrir este mesmo pacote no próprio PC. Envie o código
+          da sala — o endereço 127.0.0.1 não serve para convidar alguém de outra
+          casa.
+        </p>
+      </section>
+      <details open>
+        <summary>Como começar uma partida de 2v2 a 4v4</summary>
+        <ol>
+          <li>
+            Uma pessoa cria a sala. Dentro do jogo, pressione <b>Tab</b> para
+            ver o código e as opções.
+          </li>
+          <li>Os outros jogadores digitam o mesmo código nesta tela.</li>
+          <li>
+            Em <b>Tab → Create Custom Game</b>, escolham os times, mapa e modo.
+            Para 4v4, deixem quatro jogadores de cada lado.
+          </li>
+          <li>
+            Os convidados clicam em <b>Ready Up</b>. O anfitrião clica em
+            <b>Start Match</b>.
+          </li>
+          <li>
+            Joguem no <b>Chrome ou Edge</b>, com a aba do jogo visível. O
+            anfitrião deve ficar conectado durante a partida. Na primeira
+            abertura, aguarde o carregamento dos cenários.
+          </li>
+        </ol>
+      </details>
+      <p class="small">
+        O carregador só atende este computador; não é necessário abrir portas
+        para ele no roteador. A conexão WebRTC depende das redes dos jogadores e
+        dos serviços de sinalização/relay incluídos no jogo. Se não conectar,
+        tentem outro anfitrião e desliguem a VPN, se estiverem usando.
+      </p>
+    </main>
+    <script>
+      const nameField = document.querySelector("#name"),
+        codeField = document.querySelector("#code"),
+        status = document.querySelector("#status");
+      try {
+        nameField.value = localStorage.getItem("bodgeball.name") || "";
+      } catch {}
+      function enter(code) {
+        if (!nameField.value.trim()) {
+          status.textContent = "Preencha seu apelido para continuar.";
+          nameField.focus();
+          return;
+        }
+        if (!/^[a-z0-9-]{3,24}$/.test(code)) {
+          status.textContent =
+            "Confira o código enviado pelo anfitrião (letras, números e hífen).";
+          return;
+        }
+        try {
+          localStorage.setItem(
+            "bodgeball.name",
+            nameField.value.trim().slice(0, 24),
+          );
+        } catch {}
+        location.href = "./jogo/index.html#" + encodeURIComponent(code);
+      }
+      document.querySelector("#create").onclick = () => {
+        const data = crypto.getRandomValues(new Uint8Array(6));
+        enter(
+          "amigos-" +
+            Array.from(data, (b) => b.toString(16).padStart(2, "0")).join(""),
+        );
+      };
+      document.querySelector("#join").onclick = () =>
+        enter(codeField.value.trim().toLowerCase());
+      codeField.onkeydown = (e) => {
+        if (e.key === "Enter") document.querySelector("#join").click();
+      };
+    </script>
+  </body>
+</html>

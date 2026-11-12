@@ -1,0 +1,15 @@
+.DS_Store
+node_modules/
+__pycache__/
+*.pyc
+*.log
+.env
+.env.*
+!.env.example
+*.zip
+/dist/
+/analise-bodgeball/
+/arena-zoeira/
+/preview/
+/BodgeBall-entre-amigos/jogo/
+/BodgeBall-entre-amigos/runtime/

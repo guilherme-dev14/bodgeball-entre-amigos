@@ -1,0 +1,46 @@
+JOGAR JUNTOS PELA INTERNET - WINDOWS (2v2 a 4v4)
+
+TODOS
+1. Recebam o mesmo ZIP BodgeBall-entre-amigos-Windows.zip.
+2. Clique com o botao direito no ZIP > Extrair Tudo. Abra a pasta extraida.
+3. Abra INICIAR-WINDOWS.cmd. Ele abre o jogo no Chrome ou Edge.
+   Mantenha a janela preta do carregador aberta enquanto jogam.
+4. Digite seu apelido na pagina inicial.
+
+QUEM CRIA A SALA
+5. Clique em Criar sala e ser o anfitriao.
+6. Aguarde carregar. Pressione Tab. No topo aparece ROOM seguido do codigo.
+7. Envie SOMENTE o codigo aos amigos, por exemplo amigos-a1b2c3d4e5f6.
+   Nao use COPY LINK: o jogo original copia um endereco local (127.0.0.1).
+
+QUEM ENTRA
+8. Na pagina inicial do seu proprio PC, cole o codigo em JA RECEBEU UM CODIGO?
+9. Clique em Entrar. Aguarde carregar e pressione Tab para ver o grupo.
+
+FORMAR TIMES E COMECAR
+10. Abra CREATE CUSTOM GAME. O anfitriao escolhe modo e mapa.
+11. Use JOIN TEAM para trocar de time. Para 4v4, deixem quatro de cada lado.
+    Para 2v2, deixem dois de cada lado. Nao adicionem bots se so quiserem pessoas.
+12. Cada convidado clica em READY UP. Com todos prontos, o anfitriao clica
+    em START MATCH.
+13. Clique dentro do jogo para capturar o mouse. Esc libera o cursor.
+    Tab abre as opcoes. Mantenham a aba visivel durante a partida.
+
+SE NAO CONECTAR
+- Confiram se todos estao usando o mesmo pacote e exatamente o mesmo codigo.
+- O anfitriao precisa estar no jogo e conectado. Uma sala nao fica online
+  depois que ele sai.
+- Se necessario, tentem outra pessoa como anfitriao, com um NOVO codigo.
+- Se usarem VPN, testem sem ela. Redes restritivas podem impedir WebRTC.
+- Nao abram portas nem desativem o firewall para o carregador local: ele
+  atende somente o proprio computador. A partida usa conexoes pela internet.
+- Para encerrar tudo, feche a aba e a janela preta do carregador.
+
+O QUE FOI TESTADO
+Quatro sessoes no mesmo computador conectaram e iniciaram um 2v2.
+Um jogador com sete bots iniciou 4v4, com eliminacoes e mudanca de rodada.
+O carregador final abriu o jogo no navegador deste Mac. O executavel incluido
+foi verificado pelo SHA256 oficial, mas ainda nao foi executado no Windows.
+O teste com voces em casas diferentes, especialmente oito pessoas ao mesmo
+tempo, ainda falta. Portanto, este e um pacote para teste, nao uma garantia
+previa de desempenho ou conectividade em todas as redes.

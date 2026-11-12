@@ -1,0 +1,24 @@
+BODGEBALL - ENTRE AMIGOS
+
+1. No Windows 10/11 x64, extraia a pasta inteira do ZIP.
+2. Abra INICIAR-WINDOWS.cmd (nao execute de dentro do ZIP).
+3. O Chrome ou Edge abrira a tela de apelido e sala. Mantenha a janela do carregador aberta.
+4. Uma pessoa cria a sala e envia o CODIGO exibido no jogo (Tab) aos amigos.
+5. Cada amigo abre o mesmo pacote no seu proprio PC, digita um apelido e o codigo recebido.
+6. Tab abre as opcoes: Create Custom Game. Para 4v4, cada jogador escolhe JOIN TEAM ate ficarem quatro de cada lado. Nao adicionem bots se todos os participantes forem pessoas.
+7. Convidados clicam em READY UP. O anfitriao clica em START MATCH quando todos estiverem prontos.
+8. Na primeira abertura, espere carregar os cenarios. Clique dentro do jogo para controlar o mouse; Esc solta o cursor e Tab abre o menu.
+
+IMPORTANTE: o botao COPY LINK do jogo original copia um endereco local. Para amigos em outras casas, envie somente o CODIGO DA SALA (exemplo: amigos-a1b2c3d4e5f6).
+
+INTERNET, NAO APENAS LAN
+O servidor local entrega os arquivos somente ao proprio computador. A comunicacao da partida e feita pelo WebRTC/PeerJS ja incluido no jogo. O primeiro jogador da sala e o anfitriao. Nao compartilhe o endereco 127.0.0.1: ele aponta para o computador de quem abre. Compartilhe o codigo da sala.
+
+O anfitriao deve manter a aba visivel, a janela aberta e o computador acordado. Algumas redes e VPNs bloqueiam conexoes diretas/relay. O teste realizado foi de quatro sessoes no mesmo computador: sala, times e inicio de partida 2v2 confirmados. A configuracao 4v4 tambem foi testada com um jogador e sete bots. O teste com oito pessoas em redes diferentes e a execucao do carregador no Windows ainda precisam de teste real. Os controles de mouse devem ser usados no Chrome/Edge, nao no navegador embutido do chat.
+
+SOBRE ESTA COPIA
+Arquivos extraidos do app.asar fornecido pelo usuario; instalacao original preservada. Uma alteracao de compatibilidade no transporte PeerJS normaliza mensagens de objetos como JSON, mantendo pacotes binarios de movimento. Isso corrige campos undefined que chegavam como null e travavam o audio/entrada do convidado. Nenhuma mudanca de regras, modelos ou mapas. O carregador acrescenta uma tela local de apelido e codigo; nao substitui o jogo.
+
+O runtime Node.js Windows x64 oficial esta em runtime/, com URL de origem, SHA256 verificado e licenca. Nao requer instalar Python, Node ou bibliotecas no Windows. Nao ha publicacao de arquivos na internet.
+
+Para desenvolvedores: node servidor.cjs --no-open inicia somente o servidor em loopback. Porta inicial 5182; se ocupada, tenta ate 5192.
